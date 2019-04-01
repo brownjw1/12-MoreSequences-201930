@@ -601,8 +601,8 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color,
 
 
         else:
-            line = rg.Line(list[k], list[hops_to_next_point%(len(list) - k)])
-
+            #line = rg.Line(list[k], list[hops_to_next_point%(len(list) - k)])
+            line = rg.Line(list[k], list[(k + hops_to_next_point) % (len(list))])
 
         line.color = color
         line.thickness = thickness
