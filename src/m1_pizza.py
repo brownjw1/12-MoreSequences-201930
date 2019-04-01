@@ -30,10 +30,10 @@ def main():
     #        RE-commenting out the previous test to reduce the output.
     # -------------------------------------------------------------------------
 
-    #run_test_generate_points_on_circle()
-    #run_test_draw_points_on_circle()
-    #run_test_pizza()
-    #run_test_polygon()
+    # run_test_generate_points_on_circle()
+    # run_test_draw_points_on_circle()
+    # run_test_pizza()
+    # run_test_polygon()
     run_test_fancy_polygon()
 
 
@@ -125,7 +125,6 @@ def generate_points_on_circle(circle_for_points, number_of_points_to_generate):
     points = []
     degrees = 0
     for _ in range(number_of_points_to_generate):
-
         # ---------------------------------------------------------------------
         # Compute x and y of the point on the circumference of the
         # circle by using a polar representation.
@@ -194,7 +193,7 @@ def run_test_draw_points_on_circle():
     title = 'DRAW_POINTS_ON_CIRCLE, test 4:  4 purple dots.'
     window = rg.RoseWindow(600, 600, title)
     circle = rg.Circle(rg.Point(300, 300), 200)
-    circle.fill_color='black'
+    circle.fill_color = 'black'
     draw_points_on_circle(window, circle, 80, 'purple')
     window.close_on_mouse_click()
 
@@ -245,18 +244,14 @@ def draw_points_on_circle(window, circle, number_of_points, color):
     # Your professor may do this exercise with you as "live coding".
     # -------------------------------------------------------------------------
     circle.attach_to(window)
-    list=generate_points_on_circle(circle,number_of_points)
+    list = generate_points_on_circle(circle, number_of_points)
     for k in range(len(list)):
-        point=list[k]
-        circ=rg.Circle(list[k],10)
-        circ.fill_color=color
+        point = list[k]
+        circ = rg.Circle(list[k], 10)
+        circ.fill_color = color
         circ.attach_to(window)
         point.attach_to(window)
     window.render()
-
-
-
-
 
 
 def run_test_pizza():
@@ -311,7 +306,7 @@ def run_test_pizza():
     window = rg.RoseWindow(600, 600, title)
     circle = rg.Circle(rg.Point(200, 200), 150)
     circle.outline_thickness = 3
-    circle.fill_color='yellow'
+    circle.fill_color = 'yellow'
     pizza(window, circle, 250, 'black', 1)
     window.close_on_mouse_click()
 
@@ -358,9 +353,9 @@ def pizza(window, circle, number_of_slices, color, thickness):
     circle.attach_to(window)
     list = generate_points_on_circle(circle, number_of_slices)
     for k in range(len(list)):
-        line=rg.Line(list[k],circle.center)
-        line.thickness=thickness
-        line.color=color
+        line = rg.Line(list[k], circle.center)
+        line.thickness = thickness
+        line.color = color
         line.attach_to(window)
     window.render()
 
@@ -405,7 +400,7 @@ def run_test_polygon():
     window = rg.RoseWindow(550, 400, title)
     circle = rg.Circle(rg.Point(200, 200), 100)
     circle.outline_thickness = 4
-    circle.fill_color='green'
+    circle.fill_color = 'green'
     polygon(window, circle, 10, 'pink', 2)
     window.close_on_mouse_click()
 
@@ -452,15 +447,14 @@ def polygon(window, circle, number_of_segments, color, thickness):
     circle.attach_to(window)
     list = generate_points_on_circle(circle, number_of_segments)
     for k in range(len(list)):
-        if(k<len(list)-1):
-            line=rg.Line(list[k],list[k+1])
+        if (k < len(list) - 1):
+            line = rg.Line(list[k], list[k + 1])
         else:
-            line=rg.Line(list[k],list[0])
-        line.color=color
-        line.thickness=thickness
+            line = rg.Line(list[k], list[0])
+        line.color = color
+        line.thickness = thickness
         line.attach_to(window)
     window.render()
-
 
 
 def run_test_fancy_polygon():
@@ -600,14 +594,19 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color,
 
     circle.attach_to(window)
     list = generate_points_on_circle(circle, number_of_lines)
-    for k in range(0, len(list), number_of_lines):
-        if(k+hops_to_next_point<len(list)):
+    for k in range(0, len(list), 1):
+        #line=rg.Line(list[k], list[hops_to_next_point%(len(list) - k)])
+        if (k + hops_to_next_point < len(list)):
             line = rg.Line(list[k], list[k + hops_to_next_point])
+
+
         else:
-            line= rg.Line(list[k],list[len(list)%hops_to_next_point])
+            line = rg.Line(list[k], list[hops_to_next_point%(len(list) - k)])
+
+
         line.color = color
         line.thickness = thickness
-        line.arrow='last'
+        line.arrow = 'last'
         line.attach_to(window)
     window.render()
 
